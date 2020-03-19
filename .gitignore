@@ -4,7 +4,6 @@ config/keys.dev.js
 
 # compiled output
 /dist
-/middleware
 /tmp
 /out-tsc
 
