@@ -21,6 +21,8 @@ mongoose.connect(keys.mongoURI, {
     .then(() => console.log('MongoDB connected!'))
     .catch(error => console.log(error, 'error'));
 
+mongoose.set('useFindAndModify', false);
+
 app.use(passport.initialize());
 require('./middleware/passport')(passport);
 
