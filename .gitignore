@@ -6,6 +6,7 @@ config/keys.dev.js
 /dist
 /tmp
 /out-tsc
+/uploads
 
 # dependencies
 /node_modules
