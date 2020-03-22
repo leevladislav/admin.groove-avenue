@@ -48,6 +48,7 @@ module.exports.create = async function(req, res) {
 };
 
 module.exports.update = async function(req, res) {
+    console.log(req, 'req update');
     const updated = {
         name: req.body.name
     };
@@ -65,6 +66,7 @@ module.exports.update = async function(req, res) {
 
         res.status(200).json(category);
     } catch (e) {
+        console.log(e, 'e update');
         errorHandler(res, e);
     }
 };
