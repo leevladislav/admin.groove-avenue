@@ -8,11 +8,11 @@ import {MaterialService} from '../../shared/classes/material.service';
 import {Category} from '../../shared/interfaces';
 
 @Component({
-  selector: 'app-categories-form',
-  templateUrl: './categories-form.component.html',
-  styleUrls: ['./categories-form.component.scss']
+  selector: 'app-category',
+  templateUrl: './category.component.html',
+  styleUrls: ['./category.component.scss']
 })
-export class CategoriesFormComponent implements OnInit, OnDestroy {
+export class CategoryComponent implements OnInit, OnDestroy {
   @ViewChild('input', {static: false}) inputRef: ElementRef;
   form: FormGroup;
   image: File;

@@ -6,11 +6,11 @@ import {MaterialInstance, MaterialService} from '../../../shared/classes/materia
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
-  selector: 'app-positions-form',
-  templateUrl: './positions-form.component.html',
-  styleUrls: ['./positions-form.component.scss']
+  selector: 'app-positions',
+  templateUrl: './positions.component.html',
+  styleUrls: ['./positions.component.scss']
 })
-export class PositionsFormComponent implements OnInit, OnDestroy, AfterViewInit {
+export class PositionsComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input('categoryId') categoryId: string;
   @ViewChild('modal', {static: false}) modalRef: ElementRef;
 
@@ -27,6 +27,7 @@ export class PositionsFormComponent implements OnInit, OnDestroy, AfterViewInit 
   ngOnInit() {
     this.form = new FormGroup({
       name: new FormControl(null, Validators.required),
+      description: new FormControl(null, Validators.required),
       cost: new FormControl(1, [Validators.required, Validators.min(1)])
     });
 
@@ -49,6 +50,7 @@ export class PositionsFormComponent implements OnInit, OnDestroy, AfterViewInit 
 
     this.form.patchValue({
       name: position.name,
+      description: position.description,
       cost: position.cost
     });
     this.modal.open();
@@ -58,7 +60,7 @@ export class PositionsFormComponent implements OnInit, OnDestroy, AfterViewInit 
   onAddPosition() {
     this.positionsId = null;
 
-    this.form.reset({name: '', cost: 1});
+    this.form.reset({name: '', description: '', cost: 1});
     this.modal.open();
     MaterialService.updateTextInputs();
   }
@@ -91,6 +93,7 @@ export class PositionsFormComponent implements OnInit, OnDestroy, AfterViewInit 
 
     const newPosition: Position = {
       name: this.form.value.name,
+      description: this.form.value.description,
       cost: this.form.value.cost,
       category: this.categoryId,
     };

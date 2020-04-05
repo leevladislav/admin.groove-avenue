@@ -53,11 +53,24 @@
       </div>
 
       <div class="input-field">
+        <input formControlName="description"
+               [ngClass]="{'invalid' : form.get('description').invalid && form.get('description').touched}"
+               id="pos-description" type="text">
+
+        <label for="pos-description">Описание</label>
+
+        <span *ngIf="form.get('description').invalid && form.get('description').touched"
+              class="helper-text red-text">
+          <span *ngIf="form.get('description').errors['required']">Description is required</span>
+        </span>
+      </div>
+
+      <div class="input-field">
         <input formControlName="cost"
                [ngClass]="{'invalid' : form.get('cost').invalid && form.get('cost').touched}"
                id="pos-cost" type="number" min="1">
 
-        <label for="pos-cost">Цена</label>
+        <label for="pos-cost">Цена UAH</label>
 
         <span *ngIf="form.get('cost').invalid && form.get('cost').touched"
               class="helper-text red-text">

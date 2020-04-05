@@ -10,7 +10,14 @@
   <div class="col s12">
     <div class="collection" *ngIf="categories.length !==0; else empty">
       <a [routerLink]="['/categories', category._id]"
-         *ngFor="let category of categories" class="collection-item">{{category.name}}</a>
+         *ngFor="let category of categories" class="collection-item">
+
+        <div class="img-wrapper">
+          <img src="{{category.imageSrc}}" alt="category">
+        </div>
+
+        <p>{{category.name}}</p>
+      </a>
     </div>
 
     <ng-template #empty>
