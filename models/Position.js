@@ -10,6 +10,10 @@ const positionSchema = new Schema({
         type: String,
         required: true
     },
+    oldCost: {
+        type: Number,
+        default: 0
+    },
     cost: {
         type: Number,
         required: true

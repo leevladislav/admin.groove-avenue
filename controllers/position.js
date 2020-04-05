@@ -14,11 +14,22 @@ module.exports.getByCategoryId = async function(req, res) {
     }
 };
 
+module.exports.getByPositionId = async function(req, res) {
+    try {
+        const position = await Position.findById(req.params.positionId);
+
+        res.status(200).json(position);
+    } catch (e) {
+        errorHandler(res, e);
+    }
+};
+
 module.exports.create = async function(req, res) {
     try {
         const position = await new Position({
             name: req.body.name,
             description: req.body.description,
+            oldCost: req.body.oldCost,
             cost: req.body.cost,
             category: req.body.category,
             user: req.user.id
