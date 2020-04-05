@@ -1,0 +1,16 @@
+<app-modal-header [title]="data.title"></app-modal-header>
+
+<div class="dialog-content">
+    <div class="mb-2">
+        <p class="text-center">{{data.type}}</p>
+    </div>
+    <mat-dialog-actions align="center" class="mb-0">
+        <button class="btn btn-accent mr-2" [mat-dialog-close]="false">
+            Отменить
+        </button>
+
+        <button class="btn btn-primary" [mat-dialog-close]="true">
+            {{data.buttonText ? data.buttonText : 'Да'}}
+        </button>
+    </mat-dialog-actions>
+</div>

@@ -1,0 +1,61 @@
+$accent-background: #ffffff;
+
+$primary-text-color: #000000;
+
+$regular-font-weight: 400;
+
+
+
+
+$accent-color: #3ADCFF;
+$accent-muted-color: #0085FF;
+$light-color: #ffffff;
+$online-color: #95EFBB;
+$clinic1-color: #FEB6FF;
+$clinic2-color: #FECB9E;
+$warn-color: #F44336;
+$muted-color: rgba(255, 255, 255, 0.64);
+$muted-disabled-color: rgba(255, 255, 255, 0.42);
+
+
+$bold-font-weight: 700;
+
+$main-background: #1F275A;
+$primary-card-background: #323C79;
+$secondary-card-background: #293372;
+$light-background: #303974;
+$dark-background: #141D3C;
+
+$notification-background: rgba(0, 133, 255, 0.5);
+
+$primary-vertical-gradient-background: linear-gradient(90deg, $light-background 1.98%, $dark-background 48.85%);
+$primary-horizontal-gradient-background: linear-gradient(179.97deg, $light-background 0%, $dark-background 60.32%);
+$accent-horizontal-gradient-background: linear-gradient(95.94deg, $accent-color 4.58%, #067DEC 85.5%);
+
+
+$accent-text-color: #3ADCFF;
+$muted-text-color: #ffffffa3;
+
+$primary-box-shadow: 0px 4px 40px #172039;
+
+$primary-button-color: #FFFFFF;
+$primary-button-background: linear-gradient(126.37deg, #34BDDB 4.58%, #067DEC 85.5%);
+$primary-button-hover-color: #FFFFFF;
+$primary-button-active-color: #FFFFFF;
+
+$secondary-button-color: #FFFFFF;
+$secondary-button-background: #455698;
+$secondary-button-hover-color: #FFFFFF;
+
+$accent-button-color: #3ADCFF;
+$accent-button-background: transparent;
+$accent-button-border: 2px solid #3ADCFF;
+$accent-button-hover-color: #3ADCFF;
+
+$primary-link-color: #3ADCFF;
+$primary-link-hover-color: #3ADCFF;
+$secondary-link-color: #FFFFFF;
+$secondary-link-hover-color: #3ADCFF;
+
+$border-radius: 6px;
+$border-bottom: 1px solid rgba(255, 255, 255, 0.25);

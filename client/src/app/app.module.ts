@@ -1,7 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 
 import {AppComponent} from './app.component';
@@ -14,15 +13,16 @@ import {OverviewPageComponent} from './overview-page/overview-page.component';
 import {AnalyticsPageComponent} from './analytics-page/analytics-page.component';
 import {HistoryPageComponent} from './history-page/history-page.component';
 import {OrderPageComponent} from './order-page/order-page.component';
-import {CategoriesPageComponent} from './categories-page/categories-page.component';
-import {LoaderComponent} from './shared/components/loader/loader.component';
-import {CategoryComponent} from './categories-page/category/category.component';
-import {PositionsComponent} from './categories-page/category/positions/positions.component';
 import {OrderCategoriesComponent} from './order-page/order-categories/order-categories.component';
 import {OrderPositionsComponent} from './order-page/order-positions/order-positions.component';
 import {HistoryListComponent} from './history-page/history-list/history-list.component';
 import {HistoryFilterComponent} from './history-page/history-filter/history-filter.component';
-import {PositionComponent} from './categories-page/category/position/position.component';
+import {SharedModule} from './shared/shared.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {ModalInfoComponent} from './entry-components/modal-info/modal-info.component';
+import {ModalConfirmComponent} from './entry-components/modal-confirm/modal-confirm.component';
+import {ModalCropComponent} from './entry-components/modal-crop/modal-crop.component';
+import {ImageCropperModule} from 'ngx-image-cropper';
 
 @NgModule({
   declarations: [
@@ -35,22 +35,20 @@ import {PositionComponent} from './categories-page/category/position/position.co
     AnalyticsPageComponent,
     HistoryPageComponent,
     OrderPageComponent,
-    CategoriesPageComponent,
-    LoaderComponent,
-    CategoryComponent,
-    PositionsComponent,
     OrderCategoriesComponent,
     OrderPositionsComponent,
     HistoryListComponent,
     HistoryFilterComponent,
-    PositionComponent
+    ModalInfoComponent,
+    ModalConfirmComponent,
+    ModalCropComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule
+    SharedModule,
+    BrowserAnimationsModule,
+    ImageCropperModule
   ],
   providers: [
     {
@@ -58,6 +56,11 @@ import {PositionComponent} from './categories-page/category/position/position.co
       multi: true,
       useClass: TokenInterceptor
     }
+  ],
+  entryComponents: [
+    ModalInfoComponent,
+    ModalConfirmComponent,
+    ModalCropComponent
   ],
   bootstrap: [AppComponent]
 })

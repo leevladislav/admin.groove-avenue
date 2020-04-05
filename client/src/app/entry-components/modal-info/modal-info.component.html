@@ -1,0 +1,19 @@
+<app-modal-header [title]="data.title"></app-modal-header>
+
+<div class="dialog-content">
+    <div class="mb-2">
+        <p class="text-center">
+            <ng-container *ngIf="isArray; else string">
+                <ng-container *ngFor="let m of data.message; let last = last">
+                    <div>{{m}}</div>
+                    <br *ngIf="!last">
+                </ng-container>
+            </ng-container>
+            <ng-template #string>{{data.message}}</ng-template>
+        </p>
+    </div>
+
+    <mat-dialog-actions align="center" class="mb-0">
+        <button class="btn btn-primary" [mat-dialog-close]="false">Закрыть</button>
+    </mat-dialog-actions>
+</div>

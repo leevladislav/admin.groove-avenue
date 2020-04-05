@@ -1,0 +1,32 @@
+<div class="page-title">
+  <h4>Categories</h4>
+
+  <button
+    [routerLink]="['/categories/create']"
+    class="waves-effect waves-light btn grey darken-1">Add Category
+  </button>
+</div>
+
+<div *ngIf="categories$ | async as categories; else loader" class="row">
+  <div class="collection" *ngIf="categories.length !==0; else empty">
+    <a [routerLink]="['/categories', category._id, 'edit']"
+       *ngFor="let category of categories" class="collection-item">
+
+      <div class="img-wrapper">
+        <img src="{{category.imageSrc}}" alt="category">
+      </div>
+
+      <p>{{category.name}}</p>
+    </a>
+  </div>
+
+  <ng-template #empty>
+    <div class="center">
+      Category list is empty
+    </div>
+  </ng-template>
+</div>
+
+<ng-template #loader>
+  <app-loader></app-loader>
+</ng-template>

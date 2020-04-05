@@ -68,18 +68,6 @@ main, footer {
   margin-right: auto
 }
 
-.page-title {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 25px 0
-}
-
-.page-title a {
-  color: black;
-  opacity: .8
-}
-
 #create-modal {
   max-width: 500px
 }
@@ -91,7 +79,7 @@ main, footer {
   padding: 15px 0
 }
 
-.page-title h3, .page-title h4 {
+.page-title h3 {
   margin: 0;
   font-size: 2.3rem
 }

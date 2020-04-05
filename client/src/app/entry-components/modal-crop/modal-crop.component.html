@@ -1,0 +1,29 @@
+<app-modal-header [title]="'Обрезать изображение'"></app-modal-header>
+<div class="dialog-content">
+  <div class="mb-4">
+    <p class="text-center" *ngIf="loadFailed">{{loadFailed}}</p>
+
+    <image-cropper
+      [imageChangedEvent]="imageChangedEvent"
+      [maintainAspectRatio]="true"
+      [aspectRatio]="aspectRatio"
+      [resizeToWidth]="resizeToWidth"
+      [roundCropper]="roundCropper"
+      [style.display]="showCropper ? null : 'none'"
+      format="png"
+      (imageCropped)="imageCropped($event)"
+      (imageLoaded)="imageLoaded()"
+      (loadImageFailed)="loadImageFailed()">
+    </image-cropper>
+  </div>
+
+  <mat-dialog-actions align="center" class="mb-0">
+    <button class="btn btn-accent mr-2" [mat-dialog-close]="false">
+      Отменить
+    </button>
+
+    <button class="btn btn-primary" (click)="cropImage()">
+      Обрезать
+    </button>
+  </mat-dialog-actions>
+</div>

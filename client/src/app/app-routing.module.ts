@@ -9,8 +9,6 @@ import {OverviewPageComponent} from './overview-page/overview-page.component';
 import {AnalyticsPageComponent} from './analytics-page/analytics-page.component';
 import {HistoryPageComponent} from './history-page/history-page.component';
 import {OrderPageComponent} from './order-page/order-page.component';
-import {CategoriesPageComponent} from './categories-page/categories-page.component';
-import {CategoryComponent} from './categories-page/category/category.component';
 import {OrderCategoriesComponent} from './order-page/order-categories/order-categories.component';
 import {OrderPositionsComponent} from './order-page/order-positions/order-positions.component';
 
@@ -68,15 +66,7 @@ const routes: Routes = [
       },
       {
         path: 'categories',
-        component: CategoriesPageComponent
-      },
-      {
-        path: 'categories/new',
-        component: CategoryComponent
-      },
-      {
-        path: 'categories/:id',
-        component: CategoryComponent
+        loadChildren: () => import('./categories-page/categories-page.module').then(m => m.CategoriesPageModule)
       }
     ]
   }

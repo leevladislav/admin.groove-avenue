@@ -2,10 +2,10 @@ import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {of, Subscription} from 'rxjs';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {CategoriesService} from '../../shared/services/categories.service';
+import {CategoriesService} from '../../../shared/services/categories.service';
 import {switchMap} from 'rxjs/operators';
-import {MaterialService} from '../../shared/classes/material.service';
-import {Category} from '../../shared/interfaces';
+import {MaterialService} from '../../../shared/classes/material.service';
+import {Category} from '../../../shared/interfaces';
 
 @Component({
   selector: 'app-category',
@@ -16,7 +16,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
   @ViewChild('input', {static: false}) inputRef: ElementRef;
   form: FormGroup;
   image: File;
-  imagePreview:any = '';
+  imagePreview: any = '';
   isNew = true;
   category: Category;
 
