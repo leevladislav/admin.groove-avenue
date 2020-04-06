@@ -1,8 +1,11 @@
 import {Component, ElementRef, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {PositionsService} from '../../shared/services/positions.service';
 import {Position} from '../../shared/interfaces';
-import {Subscription} from 'rxjs';
-import {MaterialInstance, MaterialService} from '../../shared/classes/material.service';
+import {MaterialService} from '../../shared/classes/material.service';
+import {untilDestroyed} from 'ngx-take-until-destroy';
+import {ModalConfirmComponent} from "../../entry-components/modal-confirm/modal-confirm.component";
+import {MatDialog} from "@angular/material/dialog";
+import {OpenModalInfoService} from "../../shared/services/open-modal-info.service";
 
 @Component({
   selector: 'app-positions-list',
@@ -16,40 +19,53 @@ export class PositionsListComponent implements OnInit, OnDestroy {
   positions: Position[] = [];
   loading = false;
   positionsId = null;
-  modal: MaterialInstance;
-  private subscriptions: Subscription[] = [];
 
-  constructor(private positionsService: PositionsService) {
+  constructor(
+    private dialog: MatDialog,
+    private positionsService: PositionsService,
+    private openModalService: OpenModalInfoService
+  ) {
   }
 
   ngOnInit() {
     this.loading = true;
 
-    const subscription = this.positionsService.fetch(this.categoryId).subscribe(positions => {
-      this.positions = positions;
-      this.loading = false;
-    });
-
-    this.subscriptions.push(subscription);
+    this.positionsService.fetch(this.categoryId)
+      .pipe(untilDestroyed(this))
+      .subscribe(positions => {
+        this.positions = positions;
+        this.loading = false;
+      });
   }
 
   onDeletePosition(event: Event, position: Position) {
     event.stopPropagation();
+    event.preventDefault();
 
-    const decision = window.confirm(`Are you sure you want to delete position ${position.name} ?`);
+    const dialogRef = this.dialog.open(ModalConfirmComponent, {
+      data: {
+        title: 'Attention!',
+        type: `Are you sure you want to delete position ${position.name} ?`,
+      },
+      panelClass: ['primary-modal'],
+      autoFocus: false
+    });
 
-    if (decision) {
-      const subscription4 = this.positionsService.delete(position).subscribe(
-        response => {
-          const index = this.positions.findIndex(p => p._id === position._id);
-          this.positions.splice(index, 1);
-          MaterialService.toast(response.message);
-        },
-        error => MaterialService.toast(error.error.message),
-      );
+    dialogRef.afterClosed()
+      .pipe(untilDestroyed(this))
+      .subscribe((result) => {
+        if (result) {
+          this.positionsService.delete(position).subscribe(
+            response => {
+              const index = this.positions.findIndex(p => p._id === position._id);
+              this.positions.splice(index, 1);
 
-      this.subscriptions.push(subscription4);
-    }
+              this.openModalService.openModal(response, null, response.message)
+            },
+            error => this.openModalService.openModal(null, error.error.message),
+          );
+        }
+      });
   }
 
   onAddPosition() {
@@ -57,7 +73,5 @@ export class PositionsListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscriptions.forEach(subscription => subscription.unsubscribe());
-    this.subscriptions = null;
   }
 }

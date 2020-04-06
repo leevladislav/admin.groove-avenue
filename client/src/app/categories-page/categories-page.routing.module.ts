@@ -23,11 +23,11 @@ const routes: Routes = [
         component: CategoryComponent
       },
       {
-        path: ':id/position/create',
+        path: ':id/edit/position/create',
         component: PositionComponent
       },
       {
-        path: ':id/edit/position/:id/edit',
+        path: ':id/edit/position/:positionId/edit',
         component: PositionComponent
       }
     ]

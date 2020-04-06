@@ -15,6 +15,7 @@ import {untilDestroyed} from 'ngx-take-until-destroy';
 export class PositionComponent implements OnInit, OnDestroy {
   position: Position;
   form: FormGroup;
+  categoriesId = null;
   positionsId = null;
 
   constructor(
@@ -30,25 +31,28 @@ export class PositionComponent implements OnInit, OnDestroy {
     this.route.params
       .pipe(untilDestroyed(this))
       .subscribe(result => {
-        if (result.id) {
-          this.positionsId = result.id;
+        if (result) {
+          this.categoriesId = result.id;
+          this.positionsId = result.positionId;
 
-          this.positionsService.getOnePosition(this.positionsId)
-            .pipe(untilDestroyed(this))
-            .subscribe((position: Position) => {
-              if (position) {
-                this.position = {...position};
+          if (this.positionsId) {
+            this.positionsService.getOnePosition(this.positionsId)
+              .pipe(untilDestroyed(this))
+              .subscribe((position: Position) => {
+                if (position) {
+                  this.position = {...position};
 
-                this.form.patchValue({
-                  name: this.position.name,
-                  description: this.position.description,
-                  oldCost: this.position.oldCost,
-                  cost: this.position.cost
-                });
+                  this.form.patchValue({
+                    name: this.position.name,
+                    description: this.position.description,
+                    oldCost: this.position.oldCost,
+                    cost: this.position.cost
+                  });
 
-                MaterialService.updateTextInputs();
-              }
-            });
+                  MaterialService.updateTextInputs();
+                }
+              });
+          }
         }
       });
   }
@@ -70,7 +74,7 @@ export class PositionComponent implements OnInit, OnDestroy {
       description: this.form.value.description,
       oldCost: this.form.value.oldCost,
       cost: this.form.value.cost,
-      category: this.position.category,
+      category: this.categoriesId,
     };
 
     const completed = () => {
@@ -87,7 +91,7 @@ export class PositionComponent implements OnInit, OnDestroy {
           position => {
             this.openModalService.openModal(position, null, 'Position successfully edited', 'categories');
           },
-          error => this.openModalService.openModal(null, error),
+          error => this.openModalService.openModal(null, error.error.message),
           completed
         );
     } else {

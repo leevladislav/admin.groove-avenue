@@ -38,32 +38,32 @@ const routes: Routes = [
     component: SiteLayoutComponent,
     canActivate: [AuthGuard],
     children: [
-      {
-        path: 'overview',
-        component: OverviewPageComponent
-      },
-      {
-        path: 'analytics',
-        component: AnalyticsPageComponent
-      },
-      {
-        path: 'history',
-        component: HistoryPageComponent
-      },
-      {
-        path: 'order',
-        component: OrderPageComponent,
-        children: [
-          {
-            path: '',
-            component: OrderCategoriesComponent
-          },
-          {
-            path: ':id',
-            component: OrderPositionsComponent
-          }
-        ]
-      },
+      // {
+      //   path: 'overview',
+      //   component: OverviewPageComponent
+      // },
+      // {
+      //   path: 'analytics',
+      //   component: AnalyticsPageComponent
+      // },
+      // {
+      //   path: 'history',
+      //   component: HistoryPageComponent
+      // },
+      // {
+      //   path: 'order',
+      //   component: OrderPageComponent,
+      //   children: [
+      //     {
+      //       path: '',
+      //       component: OrderCategoriesComponent
+      //     },
+      //     {
+      //       path: ':id',
+      //       component: OrderPositionsComponent
+      //     }
+      //   ]
+      // },
       {
         path: 'categories',
         loadChildren: () => import('./categories-page/categories-page.module').then(m => m.CategoriesPageModule)

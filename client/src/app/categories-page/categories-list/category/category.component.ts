@@ -1,11 +1,14 @@
 import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
-import {of, Subscription} from 'rxjs';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {of} from 'rxjs';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CategoriesService} from '../../../shared/services/categories.service';
 import {switchMap} from 'rxjs/operators';
-import {MaterialService} from '../../../shared/classes/material.service';
 import {Category} from '../../../shared/interfaces';
+import {untilDestroyed} from 'ngx-take-until-destroy';
+import {OpenModalInfoService} from '../../../shared/services/open-modal-info.service';
+import {MatDialog} from "@angular/material/dialog";
+import {ModalConfirmComponent} from "../../../entry-components/modal-confirm/modal-confirm.component";
 
 @Component({
   selector: 'app-category',
@@ -20,23 +23,25 @@ export class CategoryComponent implements OnInit, OnDestroy {
   isNew = true;
   category: Category;
 
-  private subscriptions: Subscription[] = [];
-
   constructor(
+    private fb: FormBuilder,
     private route: ActivatedRoute,
     private categoriesService: CategoriesService,
-    private router: Router
+    private router: Router,
+    private openModalService: OpenModalInfoService,
+    private dialog: MatDialog
   ) {
   }
 
   ngOnInit() {
-    this.form = new FormGroup({
-      name: new FormControl(null, [Validators.required])
+    this.form = this.fb.group({
+      name: [null, [Validators.required]]
     });
 
     this.form.disable();
 
-    const subscription = this.route.params.pipe(
+    this.route.params.pipe(
+      untilDestroyed(this),
       switchMap(
         (params: Params) => {
           if (params['id']) {
@@ -56,21 +61,12 @@ export class CategoryComponent implements OnInit, OnDestroy {
           });
 
           this.imagePreview = category.imageSrc;
-
-          MaterialService.updateTextInputs();
         }
 
         this.form.enable();
       },
-      error => MaterialService.toast(error.error.message)
+      error => this.openModalService.openModal(null, error.error.message)
     );
-
-    this.subscriptions.push(subscription);
-  }
-
-  ngOnDestroy() {
-    this.subscriptions.forEach(subscription => subscription.unsubscribe());
-    this.subscriptions = null;
   }
 
   triggerClick() {
@@ -78,17 +74,27 @@ export class CategoryComponent implements OnInit, OnDestroy {
   }
 
   deleteCategory() {
-    const decision = window.confirm(`Are you sure you want to delete category ${this.category.name} ?`);
+    const dialogRef = this.dialog.open(ModalConfirmComponent, {
+      data: {
+        title: 'Attention!',
+        type: `Are you sure you want to delete category ${this.category.name} ?`,
+      },
+      panelClass: ['primary-modal'],
+      autoFocus: false
+    });
 
-    if (decision) {
-      const subscription2 = this.categoriesService.delete(this.category._id).subscribe(
-        response => MaterialService.toast(response.message),
-        error => MaterialService.toast(error.error.message),
-        () => this.router.navigate(['/categories'])
-      );
-
-      this.subscriptions.push(subscription2);
-    }
+    dialogRef.afterClosed()
+      .pipe(untilDestroyed(this))
+      .subscribe((result) => {
+        if (result) {
+          this.categoriesService.delete(this.category._id)
+            .pipe(untilDestroyed(this))
+            .subscribe(
+              response => this.openModalService.openModal(response, null, response.message, 'categories'),
+              error => this.openModalService.openModal(null, error.error.message)
+            );
+        }
+      });
   }
 
   onFileUpload(event: any) {
@@ -107,6 +113,10 @@ export class CategoryComponent implements OnInit, OnDestroy {
   onSubmit() {
     let obs$;
 
+    if (this.form.invalid) {
+      return this.form.markAllAsTouched();
+    }
+
     this.form.disable();
 
     if (this.isNew) {
@@ -115,18 +125,20 @@ export class CategoryComponent implements OnInit, OnDestroy {
       obs$ = this.categoriesService.update(this.category._id, this.form.value.name, this.image);
     }
 
-    const subscription3 = obs$.subscribe(
-      category => {
-        this.category = category;
-        MaterialService.toast('Edited successfully');
-        this.form.enable();
-      },
-      error => {
-        MaterialService.toast(error.erroe.message);
-        this.form.enable();
-      }
-    );
+    obs$.pipe(untilDestroyed(this))
+      .subscribe(
+        category => {
+          this.category = category;
+          this.openModalService.openModal(category, null, 'Category successfully edited');
+          this.form.enable();
+        },
+        error => {
+          this.openModalService.openModal(null, error.error.message);
+          this.form.enable();
+        }
+      );
+  }
 
-    this.subscriptions.push(subscription3);
+  ngOnDestroy() {
   }
 }

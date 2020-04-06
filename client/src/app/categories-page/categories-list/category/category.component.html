@@ -1,52 +1,43 @@
 <div class="page-title">
   <h4>
     <a [routerLink]="'/categories'">Categories</a>
-    <i class="material-icons">keyboard_arrow_right</i>
+    <mat-icon>keyboard_arrow_right</mat-icon>
     {{isNew ? 'Create' : 'Edit'}} category
   </h4>
 
   <span>
-    <button *ngIf="!isNew" class="btn btn-small red" (click)="deleteCategory()">
-      <i class="material-icons">delete</i>
+    <button mat-raised-button color="warn" *ngIf="!isNew" (click)="deleteCategory()">
+      <mat-icon>delete</mat-icon>
     </button>
   </span>
 </div>
 
-<div class="row">
-  <form class="col s12 l6" [formGroup]="form" (ngSubmit)="onSubmit()">
-    <div class="input-field">
-      <input id="name" type="text"
-             formControlName="name"
-             [ngClass]="{'invalid' : form.get('name').invalid && form.get('name').touched}">
+<div class="category-layout">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <input matInput placeholder="Category name:" formControlName="name" required>
+      <mat-error>
+        <app-validator-message [field]="form.get('name')"></app-validator-message>
+      </mat-error>
+    </mat-form-field>
 
-      <label for="name">Category name</label>
+    <div class="upload-wrapper">
+      <input type="file" name="file" id="file" class="input-file"
+             #input (change)="onFileUpload($event)">
 
-      <span *ngIf="form.get('name').invalid && form.get('name').touched"
-            class="helper-text red-text">
-        <span *ngIf="form.get('name').errors['required']">Name is required</span>
-      </span>
-    </div>
-
-    <div>
-      <input type="file" name="file" id="file" class="dn" #input (change)="onFileUpload($event)">
-
-      <button (click)="triggerClick()"
-              [disabled]="form.disabled"
-              type="button" class="waves-effect waves-light btn orange lighten-2 mb2">
-        <i class="material-icons left">backup</i>
-        Upload image
+      <button (click)="triggerClick()" [disabled]="form.disabled"
+              type="button" mat-raised-button class="btn-upload">
+        <mat-icon>backup</mat-icon> Upload image
       </button>
-    </div>
 
-    <div>
-      <button [disabled]="form.invalid || form.disabled" type="submit" class="waves-effect waves-light btn">
-        Save image
+      <button [disabled]="form.invalid || form.disabled" type="submit" mat-raised-button color="primary">
+        Save Category
       </button>
     </div>
   </form>
 
-  <div class="col s12 l4 center">
-    <img class="responsive-img h200" [src]="imagePreview" *ngIf="imagePreview" alt="category image">
+  <div class="layout-item item-img">
+    <img [src]="imagePreview" *ngIf="imagePreview" alt="category image">
   </div>
 </div>
 

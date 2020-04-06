@@ -1,7 +1,42 @@
-.dn {
-  display: none;
-}
+.category-layout {
+  display: flex;
+  justify-content: space-between;
 
-.h200 {
-  height: 200px;
+  form {
+    flex-grow: 1;
+    padding: 0 20px 0 0;
+
+    .mat-form-field {
+      min-width: 300px;
+    }
+
+    .upload-wrapper {
+      display: flex;
+      flex-direction: column;
+
+      .input-file {
+        display: none;
+      }
+
+      .btn-upload {
+        margin-bottom: 20px;
+
+        mat-icon {
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+
+  .item-img {
+    max-width: 400px;
+    max-height: 400px;
+    overflow: hidden;
+    box-shadow: 0 5px 14px #e0e0e0;
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
 }

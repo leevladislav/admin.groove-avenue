@@ -1,35 +1,31 @@
-<div class="row">
-  <div class="col s12">
-    <div class="page-subtitle">
-      <h4>Products all:</h4>
-      <button class="waves-effect waves-light btn grey darken-1 btn-small"
-              (click)="onAddPosition()">
-        Add product
-      </button>
-    </div>
+<div class="page-title">
+  <h4>Products all:</h4>
+  <button mat-raised-button color="primary" [routerLink]="['position/create']">
+    Add product
+  </button>
+</div>
 
-    <div *ngIf="!loading; else loader">
-      <div class="collection" *ngIf="positions.length !== 0; else empty">
-        <a *ngFor="let position of positions" [routerLink]="['position', position._id, 'edit']"
-           class="collection-item collection-item-icon">
-        <span>
-            {{position.name}} <strong> - {{position.cost}} UAH</strong>
-        </span>
+<div *ngIf="!loading; else loader">
+  <div class="positions-list-layout" *ngIf="positions.length !== 0; else empty">
+    <a *ngFor="let position of positions" [routerLink]="['position', position._id, 'edit']"
+       class="layout-item">
 
-          <span>
-            <i class="material-icons" (click)="onDeletePosition($event, position)">delete</i>
-        </span>
-        </a>
+      <div class="img-wrapper">
+
       </div>
 
-      <ng-template #empty>
-        <div class="center">Anyone position in category</div>
-      </ng-template>
-    </div>
+      <p>{{position.name}} <strong> - {{position.cost}} UAH</strong></p>
 
-    <ng-template #loader>
-      <app-loader></app-loader>
-    </ng-template>
+      <mat-icon (click)="onDeletePosition($event, position)">delete</mat-icon>
+    </a>
   </div>
+
+  <ng-template #empty>
+    <div class="center">Anyone position in category</div>
+  </ng-template>
 </div>
+
+<ng-template #loader>
+  <app-loader></app-loader>
+</ng-template>
 
