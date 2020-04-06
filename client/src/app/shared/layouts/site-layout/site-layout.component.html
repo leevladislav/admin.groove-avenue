@@ -1,33 +1,37 @@
-<ul class="sidenav sidenav-fixed a-sidenav">
-  <h4>Admin</h4>
-  <li *ngFor="let link of links" class="bold" routerLinkActive="active">
-    <a [routerLink]="[link.url]"
-       class="waves-effect waves-orange">{{link.name}}</a>
-  </li>
+<mat-drawer-container class="example-container">
+  <mat-drawer mode="side" opened>
+    <div class="side-bar-layout">
+      <ul>
+        <li><p class="title">Admin</p></li>
 
-  <li class="bold last">
-    <a href="#" class="waves-effect waves-orange" (click)="logout($event)">Выйти</a>
-  </li>
-</ul>
+        <li *ngFor="let link of links" routerLinkActive="active">
+          <a [routerLink]="[link.url]">{{link.name}}</a>
+        </li>
+      </ul>
 
-<main class="content">
-  <router-outlet></router-outlet>
-</main>
+      <button mat-raised-button color="primary" (click)="logout($event)">Log out</button>
+    </div>
+  </mat-drawer>
 
-<div class="fixed-action-btn" #floating>
-  <a class="btn-floating btn-large red">
-    <i class="large material-icons">add</i>
-  </a>
+  <mat-drawer-content>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>
 
-  <ul>
-    <li>
-      <a [routerLink]="['/order']" class="btn-floating green"><i class="material-icons">assignment</i></a>
-    </li>
+<!--<div class="fixed-action-btn" #floating>-->
+<!--  <a class="btn-floating btn-large red">-->
+<!--    <i class="large material-icons">add</i>-->
+<!--  </a>-->
 
-    <li>
-      <a [routerLink]="['/categories/create']" class="btn-floating blue"><i class="material-icons">list</i></a>
-    </li>
-  </ul>
-</div>
+<!--  <ul>-->
+<!--    <li>-->
+<!--      <a [routerLink]="['/order']" class="btn-floating green"><i class="material-icons">assignment</i></a>-->
+<!--    </li>-->
 
-<a id="menu" class="waves-effect waves-light btn btn-floating"><i class="material-icons">info</i></a>
+<!--    <li>-->
+<!--      <a [routerLink]="['/categories/create']" class="btn-floating blue"><i class="material-icons">list</i></a>-->
+<!--    </li>-->
+<!--  </ul>-->
+<!--</div>-->
+
+<!--<a id="menu" class="waves-effect waves-light btn btn-floating"><i class="material-icons">info</i></a>-->

@@ -8,16 +8,20 @@
   .mat-dialog-container {
     border-radius: 3px;
     padding: 0;
-    background-color: $accent-background;
+    background-color: $main-background;
+
 
     input:-webkit-autofill {
-      -webkit-box-shadow: inset 0 0 0 50px $accent-background;
+      -webkit-box-shadow: inset 0 0 0 50px $main-background;
       -webkit-text-fill-color: $light-color;
     }
   }
 
   .dialog-content {
     padding: 6px 18px 24px;
+    p {
+      color: $primary-text-color;
+    }
   }
 }
 

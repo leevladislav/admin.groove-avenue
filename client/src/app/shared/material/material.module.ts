@@ -13,40 +13,43 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        MatButtonModule,
-        MatIconModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatDialogModule,
-        MatTableModule,
-        MatPaginatorModule,
-        MatSlideToggleModule,
-        MatSelectModule,
-        MatCheckboxModule,
-        MatProgressSpinnerModule,
-        MatDatepickerModule,
-        MatRadioModule
-    ],
-    declarations: [],
-    exports: [
-        MatButtonModule,
-        MatIconModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatDialogModule,
-        MatTableModule,
-        MatPaginatorModule,
-        MatSlideToggleModule,
-        MatSelectModule,
-        MatCheckboxModule,
-        MatProgressSpinnerModule,
-        MatDatepickerModule,
-        MatRadioModule
-    ]
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDialogModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSlideToggleModule,
+    MatSelectModule,
+    MatCheckboxModule,
+    MatProgressSpinnerModule,
+    MatDatepickerModule,
+    MatRadioModule,
+    MatSidenavModule
+  ],
+  declarations: [],
+  exports: [
+    MatButtonModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDialogModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSlideToggleModule,
+    MatSelectModule,
+    MatCheckboxModule,
+    MatProgressSpinnerModule,
+    MatDatepickerModule,
+    MatRadioModule,
+    MatSidenavModule
+  ]
 })
 export class MaterialModule {
 }

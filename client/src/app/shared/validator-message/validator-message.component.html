@@ -1,0 +1,3 @@
+<ng-container *ngIf="field.invalid && field.touched && validatorMessages().length">
+  <div class="error-message" *ngFor="let errMsg of validatorMessages()">{{errMsg}}</div>
+</ng-container>

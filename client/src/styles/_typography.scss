@@ -21,3 +21,15 @@
     opacity: .8
   }
 }
+
+a {
+  color: $primary-link-color;
+  text-decoration: none;
+  transition: all 0.2s;
+
+  &:hover {
+    color: $primary-link-hover-color;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+}

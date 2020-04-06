@@ -6,13 +6,15 @@ import {HttpClientModule} from '@angular/common/http';
 import {BackBtnComponent} from './back-btn/back-btn.component';
 import {ModalHeaderComponent} from './modal/modal-header/modal-header.component';
 import {MaterialModule} from './material/material.module';
+import {ValidatorMessageComponent} from './validator-message/validator-message.component';
 
 
 @NgModule({
   declarations: [
     BackBtnComponent,
     ModalHeaderComponent,
-    LoaderComponent
+    LoaderComponent,
+    ValidatorMessageComponent
   ],
   imports: [
     CommonModule,
@@ -28,7 +30,8 @@ import {MaterialModule} from './material/material.module';
     BackBtnComponent,
     ModalHeaderComponent,
     LoaderComponent,
-    MaterialModule
+    MaterialModule,
+    ValidatorMessageComponent
   ]
 })
 export class SharedModule {

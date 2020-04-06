@@ -1,0 +1,70 @@
+@import "../../../../styles/variables";
+
+.auth-layout {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+
+  .item-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: $border-bottom;
+
+    .logo {
+      padding: 14px;
+      display: block;
+    }
+
+    ul {
+      display: flex;
+      align-items: center;
+
+      li {
+        a {
+          padding: 14px;
+          display: block;
+
+          &:hover {
+            background-color: $main-muted-background;
+          }
+        }
+      }
+    }
+  }
+
+  .item-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+
+    ::ng-deep {
+      form {
+        min-width: 320px;
+
+        .form-layout {
+          padding: 20px;
+          border-radius: $border-radius;
+          box-shadow: $primary-box-shadow;
+
+          .title {
+            text-align: center;
+            font-size: 16px;
+          }
+
+          .form-body {
+            display: flex;
+            flex-direction: column;
+          }
+
+          .form-footer {
+            margin: 10px;
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+}

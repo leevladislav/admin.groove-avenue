@@ -3,9 +3,9 @@
 .modal-header {
   padding: 20px 20px 10px;
   color: $primary-text-color;
+  border-bottom: $border-bottom;
 
   .modal-header-title {
     font-size: 28px;
-    font-weight: $regular-font-weight;
   }
 }

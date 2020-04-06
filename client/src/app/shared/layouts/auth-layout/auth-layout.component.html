@@ -1,7 +1,7 @@
-<nav>
-  <div class="nav-wrapper grey darken-1">
-    <a routerLink="/" class="brand-logo">Groove Avenue</a>
-    <ul id="nav-mobile" class="right hide-on-med-and-down">
+<div class="auth-layout">
+  <div class="layout-item item-header">
+    <a routerLink="/" class="logo">Groove Avenue</a>
+    <ul>
       <li routerLinkActive="active">
         <a routerLink="/login">Вход</a>
       </li>
@@ -11,8 +11,10 @@
       </li>
     </ul>
   </div>
-</nav>
 
-<div class="auth-block">
-  <router-outlet></router-outlet>
+  <div class="layout-item item-body">
+    <div class="auth-form">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
 </div>
