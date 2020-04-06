@@ -9,16 +9,12 @@ import {AuthLayoutComponent} from './shared/layouts/auth-layout/auth-layout.comp
 import {SiteLayoutComponent} from './shared/layouts/site-layout/site-layout.component';
 import {RegisterPageComponent} from './register-page/register-page.component';
 import {TokenInterceptor} from './shared/classes/token.interceptor';
-import {OverviewPageComponent} from './overview-page/overview-page.component';
 import {AnalyticsPageComponent} from './analytics-page/analytics-page.component';
 import {HistoryPageComponent} from './history-page/history-page.component';
-import {OrderPageComponent} from './order-page/order-page.component';
-import {OrderCategoriesComponent} from './order-page/order-categories/order-categories.component';
-import {OrderPositionsComponent} from './order-page/order-positions/order-positions.component';
 import {HistoryListComponent} from './history-page/history-list/history-list.component';
 import {HistoryFilterComponent} from './history-page/history-filter/history-filter.component';
 import {SharedModule} from './shared/shared.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ModalInfoComponent} from './entry-components/modal-info/modal-info.component';
 import {ModalConfirmComponent} from './entry-components/modal-confirm/modal-confirm.component';
 import {ModalCropComponent} from './entry-components/modal-crop/modal-crop.component';
@@ -31,12 +27,8 @@ import {ImageCropperModule} from 'ngx-image-cropper';
     AuthLayoutComponent,
     SiteLayoutComponent,
     RegisterPageComponent,
-    OverviewPageComponent,
     AnalyticsPageComponent,
     HistoryPageComponent,
-    OrderPageComponent,
-    OrderCategoriesComponent,
-    OrderPositionsComponent,
     HistoryListComponent,
     HistoryFilterComponent,
     ModalInfoComponent,

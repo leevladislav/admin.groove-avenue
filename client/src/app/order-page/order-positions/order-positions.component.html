@@ -1,38 +1,25 @@
 <div *ngIf="positions$ | async as positions; else loader">
-  <table class="highlight" *ngIf="positions.length !==0; else empty">
-    <thead>
-    <tr>
-      <th>Название</th>
-      <th>Стоимость</th>
-      <th>Количество</th>
-      <th></th>
-    </tr>
-    </thead>
+  <div *ngIf="positions.length !==0; else empty" class="card-list-layout">
+    <div class="layout-item" *ngFor="let position of positions">
+      <div class="img-wrapper">
 
-    <tbody>
-    <tr *ngFor="let position of positions">
-      <td>{{position.name}}</td>
+      </div>
+      <p class="title">{{position.name}}</p>
 
-      <td>{{position.cost}} UAH.</td>
+      <p class="cost">{{position.cost}} UAH.</p>
 
-      <td>
-        <div class="input-field inline order-position-input">
-          <input type="number" min="1" [(ngModel)]="position.quantity">
-        </div>
-      </td>
-
-      <td>
-        <button class="btn waves-effect wavers-light btn-small"
+      <div class="action-wrapper">
+        <button mat-raised-button color="primary"
                 (click)="addToOrder(position)"
-                [disabled]="!position.quantity">Добавить</button>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+                [disabled]="!position.quantity">Order
+        </button>
+      </div>
+    </div>
+  </div>
 
   <ng-template #empty>
     <div class="center">
-      Category list is empty
+      Product list is empty
     </div>
   </ng-template>
 </div>

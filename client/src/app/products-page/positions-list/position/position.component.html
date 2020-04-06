@@ -1,0 +1,35 @@
+<app-back-btn></app-back-btn>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <input matInput placeholder="Product name:" formControlName="name" required>
+    <mat-error>
+      <app-validator-message [field]="form.get('name')"></app-validator-message>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Product description:" formControlName="description" required>
+    <mat-error>
+      <app-validator-message [field]="form.get('description')"></app-validator-message>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Old Cost UAH:" formControlName="oldCost" required>
+    <mat-error>
+      <app-validator-message [field]="form.get('oldCost')"></app-validator-message>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Cost UAH UAH:" formControlName="cost" required>
+    <mat-error>
+      <app-validator-message [field]="form.get('cost')"></app-validator-message>
+    </mat-error>
+  </mat-form-field>
+
+  <button [disabled]="form.invalid || form.disabled"
+          mat-raised-button color="primary" type="submit">Save
+  </button>
+</form>

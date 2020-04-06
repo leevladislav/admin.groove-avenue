@@ -1,12 +1,12 @@
 <div class="page-title">
-  <h4>Products all:</h4>
+  <p>Products all:</p>
   <button mat-raised-button color="primary" [routerLink]="['position/create']">
     Add product
   </button>
 </div>
 
 <div *ngIf="!loading; else loader">
-  <div class="positions-list-layout" *ngIf="positions.length !== 0; else empty">
+  <div class="card-list-layout" *ngIf="positions.length !== 0; else empty">
     <a *ngFor="let position of positions" [routerLink]="['position', position._id, 'edit']"
        class="layout-item">
 
@@ -14,9 +14,13 @@
 
       </div>
 
-      <p>{{position.name}} <strong> - {{position.cost}} UAH</strong></p>
+      <p class="title">{{position.name}} <strong> - {{position.cost}} UAH</strong></p>
 
-      <mat-icon (click)="onDeletePosition($event, position)">delete</mat-icon>
+      <span class="action-wrapper">
+        <button mat-stroked-button (click)="onDeletePosition($event, position)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </span>
     </a>
   </div>
 

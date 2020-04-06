@@ -1,8 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Position} from '../../../shared/interfaces';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {PositionsService} from '../../../shared/services/positions.service';
-import {MaterialService} from '../../../shared/classes/material.service';
 import {ActivatedRoute} from '@angular/router';
 import {OpenModalInfoService} from '../../../shared/services/open-modal-info.service';
 import {untilDestroyed} from 'ngx-take-until-destroy';
@@ -19,6 +18,7 @@ export class PositionComponent implements OnInit, OnDestroy {
   positionsId = null;
 
   constructor(
+    private fb: FormBuilder,
     private positionsService: PositionsService,
     private route: ActivatedRoute,
     private openModalService: OpenModalInfoService
@@ -48,8 +48,6 @@ export class PositionComponent implements OnInit, OnDestroy {
                     oldCost: this.position.oldCost,
                     cost: this.position.cost
                   });
-
-                  MaterialService.updateTextInputs();
                 }
               });
           }
@@ -58,11 +56,11 @@ export class PositionComponent implements OnInit, OnDestroy {
   }
 
   initForm() {
-    this.form = new FormGroup({
-      name: new FormControl(null, Validators.required),
-      description: new FormControl(null, Validators.required),
-      oldCost: new FormControl(0),
-      cost: new FormControl(1, [Validators.required, Validators.min(1)])
+    this.form = this.fb.group({
+      name: [null, [Validators.required]],
+      description: [null, [Validators.required]],
+      oldCost: [0, [Validators.required]],
+      cost: [1, [Validators.required, Validators.min(1)]],
     });
   }
 
@@ -89,7 +87,7 @@ export class PositionComponent implements OnInit, OnDestroy {
         .pipe(untilDestroyed(this))
         .subscribe(
           position => {
-            this.openModalService.openModal(position, null, 'Position successfully edited', 'categories');
+            this.openModalService.openModal(position, null, 'Product successfully edited', 'categories');
           },
           error => this.openModalService.openModal(null, error.error.message),
           completed
@@ -99,7 +97,7 @@ export class PositionComponent implements OnInit, OnDestroy {
         .pipe(untilDestroyed(this))
         .subscribe(
           position => {
-            this.openModalService.openModal(position, null, 'Position successfully added', 'categories');
+            this.openModalService.openModal(position, null, 'Product successfully added', 'categories');
           },
           error => this.openModalService.openModal(null, error),
           completed

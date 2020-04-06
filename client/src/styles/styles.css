@@ -57,10 +57,6 @@ main, footer {
   margin-right: 20px
 }
 
-.order-img {
-  height: 100px !important
-}
-
 .frow {
   display: flex;
   margin-bottom: 20px;
@@ -87,17 +83,6 @@ main, footer {
 .page-subtitle h4 {
   margin: 0;
   font-size: 2rem
-}
-
-.order-summary {
-  display: flex;
-  justify-content: flex-end;
-  font-size: 20px;
-  padding-right: 30px
-}
-
-.order-summary p {
-  margin-bottom: 0 !important
 }
 
 .order-position-input {

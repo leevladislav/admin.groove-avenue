@@ -5,12 +5,8 @@ import {SiteLayoutComponent} from './shared/layouts/site-layout/site-layout.comp
 import {LoginPageComponent} from './login-page/login-page.component';
 import {RegisterPageComponent} from './register-page/register-page.component';
 import {AuthGuard} from './shared/classes/auth.guard';
-import {OverviewPageComponent} from './overview-page/overview-page.component';
 import {AnalyticsPageComponent} from './analytics-page/analytics-page.component';
 import {HistoryPageComponent} from './history-page/history-page.component';
-import {OrderPageComponent} from './order-page/order-page.component';
-import {OrderCategoriesComponent} from './order-page/order-categories/order-categories.component';
-import {OrderPositionsComponent} from './order-page/order-positions/order-positions.component';
 
 
 const routes: Routes = [
@@ -38,10 +34,10 @@ const routes: Routes = [
     component: SiteLayoutComponent,
     canActivate: [AuthGuard],
     children: [
-      // {
-      //   path: 'overview',
-      //   component: OverviewPageComponent
-      // },
+      {
+        path: 'overview',
+        loadChildren: () => import('./overview-page/overview-page.module').then(m => m.OverviewPageModule)
+      },
       // {
       //   path: 'analytics',
       //   component: AnalyticsPageComponent
@@ -50,23 +46,13 @@ const routes: Routes = [
       //   path: 'history',
       //   component: HistoryPageComponent
       // },
-      // {
-      //   path: 'order',
-      //   component: OrderPageComponent,
-      //   children: [
-      //     {
-      //       path: '',
-      //       component: OrderCategoriesComponent
-      //     },
-      //     {
-      //       path: ':id',
-      //       component: OrderPositionsComponent
-      //     }
-      //   ]
-      // },
+      {
+        path: 'order',
+        loadChildren: () => import('./order-page/order-page.module').then(m => m.OrderPageModule)
+      },
       {
         path: 'categories',
-        loadChildren: () => import('./categories-page/categories-page.module').then(m => m.CategoriesPageModule)
+        loadChildren: () => import('./products-page/products-page.module').then(m => m.ProductsPageModule)
       }
     ]
   }

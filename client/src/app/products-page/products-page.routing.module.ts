@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {CategoriesPageComponent} from './categories-page.component';
+import {ProductsPageComponent} from './products-page.component';
 import {CategoriesListComponent} from './categories-list/categories-list.component';
 import {CategoryComponent} from './categories-list/category/category.component';
 import {PositionComponent} from './positions-list/position/position.component';
@@ -8,7 +8,7 @@ import {PositionComponent} from './positions-list/position/position.component';
 const routes: Routes = [
   {
     path: '',
-    component: CategoriesPageComponent,
+    component: ProductsPageComponent,
     children: [
       {
         path: '',
@@ -39,5 +39,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 
-export class CategoriesPageRoutingModule {
+export class ProductsPageRoutingModule {
 }

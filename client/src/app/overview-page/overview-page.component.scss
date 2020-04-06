@@ -1,0 +1,43 @@
+@import "../../styles/variables";
+
+.overview-layout {
+  display: flex;
+  align-items: stretch;
+  flex-wrap: wrap;
+  margin: 0 -20px;
+
+  .layout-item {
+    margin: 0 15px;
+    width: calc(50% - 30px);
+    border: $border;
+    padding: 20px;
+    border-radius: $border-radius;
+    box-shadow: $primary-box-shadow;
+    background-color: $main-background;
+
+    &.page-info {
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    .title {
+      font-size: 20px;
+    }
+
+    .subtitle {
+      font-size: 40px;
+    }
+
+    .status {
+      font-size: 34px;
+
+      &.good {
+        color: $success-color;
+      }
+
+      &.bad {
+        color: $warn-color;
+      }
+    }
+  }
+}

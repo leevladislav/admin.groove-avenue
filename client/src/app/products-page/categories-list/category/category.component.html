@@ -1,12 +1,14 @@
+<app-back-btn></app-back-btn>
+
 <div class="page-title">
-  <h4>
+  <p>
     <a [routerLink]="'/categories'">Categories</a>
     <mat-icon>keyboard_arrow_right</mat-icon>
     {{isNew ? 'Create' : 'Edit'}} category
-  </h4>
+  </p>
 
   <span>
-    <button mat-raised-button color="warn" *ngIf="!isNew" (click)="deleteCategory()">
+    <button mat-stroked-button *ngIf="!isNew" (click)="deleteCategory()">
       <mat-icon>delete</mat-icon>
     </button>
   </span>

@@ -17,5 +17,4 @@ export class OrderCategoriesComponent implements OnInit {
   ngOnInit() {
     this.categories$ = this.categoriesService.fetch();
   }
-
 }

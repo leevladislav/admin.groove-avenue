@@ -1,14 +1,12 @@
 <div *ngIf="categories$ | async as categories; else loader">
-  <div class="frow order-row" *ngIf="categories.length !==0; else empty">
+  <div class="card-list-layout" *ngIf="categories.length !==0; else empty">
     <div [routerLink]="['/order', category._id]"
-         *ngFor="let category of categories" class="card waves-effect pointer">
-      <div class="center">
-        <img [src]="category.imageSrc" class="responsive-img order-img">
+         *ngFor="let category of categories" class="layout-item">
+      <div class="img-wrapper">
+        <img [src]="category.imageSrc" alt="category image">
       </div>
 
-      <div class="card-content center p10">
-        <h5 class="m0">{{category.name}}</h5>
-      </div>
+      <p class="title">{{category.name}}</p>
     </div>
   </div>
 
