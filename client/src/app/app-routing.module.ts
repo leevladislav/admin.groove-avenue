@@ -42,10 +42,10 @@ const routes: Routes = [
       //   path: 'analytics',
       //   component: AnalyticsPageComponent
       // },
-      // {
-      //   path: 'history',
-      //   component: HistoryPageComponent
-      // },
+      {
+        path: 'history',
+        loadChildren: () => import('./history-page/history-page.module').then(m => m.HistoryPageModule)
+      },
       {
         path: 'order',
         loadChildren: () => import('./order-page/order-page.module').then(m => m.OrderPageModule)

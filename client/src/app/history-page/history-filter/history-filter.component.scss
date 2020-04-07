@@ -1,0 +1,13 @@
+.filter-layout {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  mat-form-field {
+    margin-right: 20px;
+  }
+
+  button {
+    margin-bottom: 20px;
+  }
+}

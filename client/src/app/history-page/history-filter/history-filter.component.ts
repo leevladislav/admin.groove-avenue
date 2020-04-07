@@ -1,40 +1,34 @@
-import {AfterViewInit, Component, ElementRef, EventEmitter, OnDestroy, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {Filter} from '../../shared/interfaces';
-import {MaterialDatepicker, MaterialService} from '../../shared/classes/material.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-history-filter',
   templateUrl: './history-filter.component.html',
   styleUrls: ['./history-filter.component.scss']
 })
-export class HistoryFilterComponent implements OnDestroy, AfterViewInit {
+export class HistoryFilterComponent {
   @Output() onFilter = new EventEmitter<Filter>();
-  @ViewChild('start', {static: false}) startRef: ElementRef;
-  @ViewChild('end', {static: false}) endRef: ElementRef;
+  minDateFrom;
+  maxDateFrom = moment();
+  minDateTo;
+  maxDateTo = moment();
 
-  start: MaterialDatepicker;
-  end: MaterialDatepicker;
+  start;
+  end;
   order: number;
 
-  isValid = true;
+  dateChanged(startDate?, endDate?) {
+    this.minDateTo = startDate ? startDate : moment();
+    this.maxDateFrom = endDate ? endDate : moment();
 
-  ngOnDestroy() {
-    this.start.destroy();
-    this.end.destroy();
-  }
-
-  ngAfterViewInit() {
-    this.start = MaterialService.initDatepicker(this.startRef, this.validate.bind(this));
-    this.end = MaterialService.initDatepicker(this.endRef, this.validate.bind(this));
-  }
-
-  validate() {
-    if (!this.start.date || !this.end.date) {
-      this.isValid = true;
-      return;
+    if (startDate) {
+      this.start = startDate;
     }
 
-    this.isValid = this.start.date < this.end.date;
+    if (endDate) {
+      this.end = endDate;
+    }
   }
 
   submitFilter() {
@@ -44,12 +38,12 @@ export class HistoryFilterComponent implements OnDestroy, AfterViewInit {
       filter.order = this.order;
     }
 
-    if (this.start.date) {
-      filter.start = this.start.date;
+    if (this.start) {
+      filter.start = this.start;
     }
 
-    if (this.end.date) {
-      filter.end = this.end.date;
+    if (this.end) {
+      filter.end = this.end;
     }
 
     this.onFilter.emit(filter);

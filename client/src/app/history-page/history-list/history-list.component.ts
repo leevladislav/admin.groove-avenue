@@ -9,16 +9,16 @@ import {MaterialInstance, MaterialService} from '../../shared/classes/material.s
 })
 export class HistoryListComponent implements OnDestroy, AfterViewInit {
   @Input() orders: Order[];
-  @ViewChild('modal', {static: false}) modalRef: ElementRef;
+  // @ViewChild('modal', {static: false}) modalRef: ElementRef;
   selectedOrder: Order;
   modal: MaterialInstance;
 
   ngOnDestroy() {
-    this.modal.destroy();
+    // this.modal.destroy();
   }
 
   ngAfterViewInit() {
-    this.modal = MaterialService.initModal(this.modalRef);
+    // this.modal = MaterialService.initModal(this.modalRef);
   }
 
   computePrice(order: Order): number {
@@ -29,10 +29,10 @@ export class HistoryListComponent implements OnDestroy, AfterViewInit {
 
   selectOrder(order: Order) {
     this.selectedOrder = order;
-    this.modal.open();
+    // this.modal.open();
   }
 
   closeModal() {
-    this.modal.close();
+    // this.modal.close();
   }
 }
