@@ -1,5 +1,40 @@
+@import '../../../styles/variables';
+
 .orders {
   .orders-list {
+
+    .list-heading,
+    .order-item {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      border-right: $border;
+      border-left: $border;
+      border-bottom: $border;
+
+      .name,
+      .quantity,
+      .cost {
+        min-width: 24%;
+        padding: 6px 10px;
+      }
+
+      .remove {
+        flex-grow: 1;
+        text-align: right;
+        padding: 6px 10px;
+        cursor: pointer;
+      }
+    }
+
+    .list-heading {
+      border-top: $border;
+    }
+
+    .list-items {
+      display: flex;
+      flex-direction: column;
+    }
 
     .list-summary {
 

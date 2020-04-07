@@ -1,25 +1,26 @@
-<div class="orders">
-  <div class="orders-list">
-    <p class="title">Your order</p>
-    <table class="highlight">
-      <thead>
-      <tr>
-        <th>Название</th>
-        <th>Количество</th>
-        <th>Цена</th>
-        <th></th>
-      </tr>
-      </thead>
+<div class="orders" *ngIf="order.list.length; else empty">
+  <p class="title">Your order</p>
 
-      <tbody>
-      <tr *ngFor="let item of order.list">
-        <td>{{item.name}}</td>
-        <td>{{item.quantity}}</td>
-        <td>{{item.cost}} UAH.</td>
-        <td><i class="material-icons pointer" (click)="removePosition(item)">delete</i></td>
-      </tr>
-      </tbody>
-    </table>
+  <div class="orders-list">
+    <div class="list-heading">
+      <p class="name">Название</p>
+      <p class="quantity">Количество</p>
+      <p class="cost">Цена</p>
+    </div>
+
+    <div class="list-items">
+      <div *ngFor="let item of order.list" class="order-item">
+        <p class="name">{{item.name}}</p>
+
+        <p class="quantity">{{item.quantity}}</p>
+
+        <p class="cost">{{item.cost}} UAH.</p>
+
+        <div class="remove">
+          <mat-icon (click)="removePosition(item)">delete</mat-icon>
+        </div>
+      </div>
+    </div>
 
     <div class="list-summary">
       <p>Общая стоимость <strong>{{order.price}} UAH.</strong></p>
@@ -29,6 +30,11 @@
   <div class="orders-footer">
     <button mat-raised-button color="primary"
             [disabled]="order.list.length === 0 || pending"
-            (click)="submit()">Submit</button>
+            (click)="submit()">Submit
+    </button>
   </div>
 </div>
+
+<ng-template #empty>
+  <div class="center">Your cart is empty now</div>
+</ng-template>

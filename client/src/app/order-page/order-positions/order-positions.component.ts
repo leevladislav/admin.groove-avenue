@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute, Params, Router} from '@angular/router';
+import {ActivatedRoute, Params} from '@angular/router';
 import {PositionsService} from '../../shared/services/positions.service';
 import {Observable} from 'rxjs';
 import {Position} from '../../shared/interfaces';
@@ -7,7 +7,7 @@ import {map, switchMap} from 'rxjs/operators';
 import {OrderService} from '../order.service';
 import {untilDestroyed} from 'ngx-take-until-destroy';
 import {MatDialog} from '@angular/material/dialog';
-import {ModalConfirmComponent} from '../../entry-components/modal-confirm/modal-confirm.component';
+import {ModalInfoComponent} from '../../entry-components/modal-info/modal-info.component';
 
 @Component({
   selector: 'app-order-positions',
@@ -21,8 +21,7 @@ export class OrderPositionsComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private positionsService: PositionsService,
     private order: OrderService,
-    private dialog: MatDialog,
-    private router: Router
+    private dialog: MatDialog
   ) {
   }
 
@@ -50,22 +49,14 @@ export class OrderPositionsComponent implements OnInit, OnDestroy {
   addToOrder(position: Position) {
     this.order.add(position);
 
-    const dialogRef = this.dialog.open(ModalConfirmComponent, {
+    this.dialog.open(ModalInfoComponent, {
       data: {
         title: 'Thank You!',
-        type: 'Your order is successfully added! Do you want to go to cart?',
+        message: 'Your order successfully added!',
       },
       panelClass: ['primary-modal'],
       autoFocus: false,
     });
-
-    dialogRef.afterClosed()
-      .pipe(untilDestroyed(this))
-      .subscribe((result) => {
-        if (result) {
-          this.router.navigate(['/order/cart']);
-        }
-      });
   }
 
   ngOnDestroy() {

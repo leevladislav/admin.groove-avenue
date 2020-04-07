@@ -1,11 +1,10 @@
 import {Component, ElementRef, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {PositionsService} from '../../shared/services/positions.service';
 import {Position} from '../../shared/interfaces';
-import {MaterialService} from '../../shared/classes/material.service';
 import {untilDestroyed} from 'ngx-take-until-destroy';
-import {ModalConfirmComponent} from "../../entry-components/modal-confirm/modal-confirm.component";
-import {MatDialog} from "@angular/material/dialog";
-import {OpenModalInfoService} from "../../shared/services/open-modal-info.service";
+import {ModalConfirmComponent} from '../../entry-components/modal-confirm/modal-confirm.component';
+import {MatDialog} from '@angular/material/dialog';
+import {OpenModalInfoService} from '../../shared/services/open-modal-info.service';
 
 @Component({
   selector: 'app-positions-list',
@@ -18,7 +17,6 @@ export class PositionsListComponent implements OnInit, OnDestroy {
 
   positions: Position[] = [];
   loading = false;
-  positionsId = null;
 
   constructor(
     private dialog: MatDialog,
@@ -66,10 +64,6 @@ export class PositionsListComponent implements OnInit, OnDestroy {
           );
         }
       });
-  }
-
-  onAddPosition() {
-
   }
 
   ngOnDestroy() {
