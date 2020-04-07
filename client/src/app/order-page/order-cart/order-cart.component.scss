@@ -2,7 +2,6 @@
 
 .orders {
   .orders-list {
-
     .list-heading,
     .order-item {
       display: flex;
@@ -23,7 +22,10 @@
         flex-grow: 1;
         text-align: right;
         padding: 6px 10px;
-        cursor: pointer;
+
+        button {
+          width: auto;
+        }
       }
     }
 
@@ -34,10 +36,6 @@
     .list-items {
       display: flex;
       flex-direction: column;
-    }
-
-    .list-summary {
-
     }
   }
 }

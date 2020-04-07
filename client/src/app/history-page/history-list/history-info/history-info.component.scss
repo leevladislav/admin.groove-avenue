@@ -1,0 +1,27 @@
+@import '../../../../styles/variables';
+
+.history-info {
+  .list-heading,
+  .info-item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border-bottom: $border;
+
+    .name {
+      flex-grow: 1;
+      padding: 6px 10px;
+    }
+
+    .quantity,
+    .cost {
+      min-width: 100px;
+      padding: 6px 10px;
+    }
+  }
+
+  .info-items {
+    display: flex;
+    flex-direction: column;
+  }
+}

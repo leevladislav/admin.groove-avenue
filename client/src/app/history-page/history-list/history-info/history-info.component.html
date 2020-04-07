@@ -1,0 +1,33 @@
+<app-modal-header [title]="data.title"></app-modal-header>
+
+<div class="dialog-content">
+
+  <div class="history-info">
+    <div class="list-heading">
+      <p class="name">Name</p>
+      <p class="quantity">Count</p>
+      <p class="cost">Cost</p>
+    </div>
+
+    <div class="info-items">
+      <div *ngFor="let item of order.list" class="info-item">
+        <p class="name">{{item.name}}</p>
+
+        <p class="quantity">{{item.quantity}}</p>
+
+        <p class="cost">{{item.cost}} UAH.</p>
+      </div>
+    </div>
+
+    <div class="info-footer">
+      <p>Total cost: {{computePrice(order)}} UAH.</p>
+    </div>
+  </div>
+
+  <mat-dialog-actions align="center">
+    <button mat-raised-button color="primary" [mat-dialog-close]="false">Close</button>
+  </mat-dialog-actions>
+</div>
+
+
+

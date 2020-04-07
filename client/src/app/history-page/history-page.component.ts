@@ -3,7 +3,7 @@ import {OrdersService} from '../shared/services/orders.service';
 import {Filter, Order} from '../shared/interfaces';
 import {untilDestroyed} from 'ngx-take-until-destroy';
 
-const STEP = 2;
+const STEP = 4;
 
 @Component({
   selector: 'app-history-page',
@@ -55,10 +55,6 @@ export class HistoryPageComponent implements OnInit, OnDestroy {
     this.filter = filter;
     this.reloading = true;
     this.fetch();
-  }
-
-  isFiltered(): boolean {
-    return Object.keys(this.filter).length !== 0;
   }
 
   ngOnDestroy() {

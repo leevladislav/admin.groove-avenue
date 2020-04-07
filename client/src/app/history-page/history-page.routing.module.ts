@@ -5,21 +5,7 @@ import {HistoryPageComponent} from './history-page.component';
 const routes: Routes = [
   {
     path: '',
-    component: HistoryPageComponent,
-    children: [
-      // {
-      //   path: '',
-      //   component: OrderCategoriesComponent
-      // },
-      // {
-      //   path: 'cart',
-      //   component: OrderCartComponent
-      // },
-      // {
-      //   path: ':id',
-      //   component: OrderPositionsComponent
-      // }
-    ]
+    component: HistoryPageComponent
   }
 ];
 

@@ -1,0 +1,44 @@
+@import '../../../styles/variables';
+
+.history-list {
+    .list-heading,
+    .history-item {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      border-right: $border;
+      border-left: $border;
+      border-bottom: $border;
+
+      .number {
+        min-width: 70px;
+        padding: 6px 10px;
+      }
+
+      .date,
+      .time,
+      .cost {
+        min-width: 20%;
+        padding: 6px 10px;
+      }
+
+      .show-more {
+        flex-grow: 1;
+        text-align: right;
+        padding: 6px 10px;
+
+        button {
+          width: auto;
+        }
+      }
+    }
+
+    .list-heading {
+      border-top: $border;
+    }
+
+    .list-items {
+      display: flex;
+      flex-direction: column;
+    }
+  }

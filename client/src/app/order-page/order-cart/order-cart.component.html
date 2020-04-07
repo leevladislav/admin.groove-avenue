@@ -17,13 +17,15 @@
         <p class="cost">{{item.cost}} UAH.</p>
 
         <div class="remove">
-          <mat-icon (click)="removePosition(item)">delete</mat-icon>
+          <button mat-button color="primary"(click)="removePosition(item)">
+            <mat-icon>delete</mat-icon>
+          </button>
         </div>
       </div>
     </div>
 
     <div class="list-summary">
-      <p>Общая стоимость <strong>{{order.price}} UAH.</strong></p>
+      <p>Total cost: {{order.price}} UAH.</p>
     </div>
   </div>
 

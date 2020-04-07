@@ -1,24 +1,18 @@
-import {AfterViewInit, Component, ElementRef, Input, OnDestroy, ViewChild} from '@angular/core';
+import {Component, Input, OnDestroy} from '@angular/core';
 import {Order} from '../../shared/interfaces';
-import {MaterialInstance, MaterialService} from '../../shared/classes/material.service';
+import {MatDialog} from '@angular/material/dialog';
+import {HistoryInfoComponent} from './history-info/history-info.component';
 
 @Component({
   selector: 'app-history-list',
   templateUrl: './history-list.component.html',
   styleUrls: ['./history-list.component.scss']
 })
-export class HistoryListComponent implements OnDestroy, AfterViewInit {
+export class HistoryListComponent implements OnDestroy {
   @Input() orders: Order[];
-  // @ViewChild('modal', {static: false}) modalRef: ElementRef;
   selectedOrder: Order;
-  modal: MaterialInstance;
 
-  ngOnDestroy() {
-    // this.modal.destroy();
-  }
-
-  ngAfterViewInit() {
-    // this.modal = MaterialService.initModal(this.modalRef);
+  constructor(private dialog: MatDialog) {
   }
 
   computePrice(order: Order): number {
@@ -29,10 +23,17 @@ export class HistoryListComponent implements OnDestroy, AfterViewInit {
 
   selectOrder(order: Order) {
     this.selectedOrder = order;
-    // this.modal.open();
+
+    this.dialog.open(HistoryInfoComponent, {
+      data: {
+        title: 'Order info',
+        orderData: this.selectedOrder
+      },
+      panelClass: ['primary-modal'],
+      autoFocus: false
+    });
   }
 
-  closeModal() {
-    // this.modal.close();
+  ngOnDestroy() {
   }
 }
