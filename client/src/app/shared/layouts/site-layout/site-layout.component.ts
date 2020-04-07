@@ -10,7 +10,7 @@ import {Router} from '@angular/router';
 export class SiteLayoutComponent {
   links = [
     {url: '/overview', name: 'Overview'},
-    {url: '/analytics', name: 'Аналитика'},
+    {url: '/analytics', name: 'Analytics'},
     {url: '/history', name: 'History'},
     {url: '/order', name: 'Add order'},
     {url: '/categories', name: 'Products'}

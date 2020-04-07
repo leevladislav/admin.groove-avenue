@@ -9,7 +9,6 @@ import {AuthLayoutComponent} from './shared/layouts/auth-layout/auth-layout.comp
 import {SiteLayoutComponent} from './shared/layouts/site-layout/site-layout.component';
 import {RegisterPageComponent} from './register-page/register-page.component';
 import {TokenInterceptor} from './shared/classes/token.interceptor';
-import {AnalyticsPageComponent} from './analytics-page/analytics-page.component';
 import {SharedModule} from './shared/shared.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ModalInfoComponent} from './entry-components/modal-info/modal-info.component';
@@ -24,7 +23,6 @@ import {ImageCropperModule} from 'ngx-image-cropper';
     AuthLayoutComponent,
     SiteLayoutComponent,
     RegisterPageComponent,
-    AnalyticsPageComponent,
     ModalInfoComponent,
     ModalConfirmComponent,
     ModalCropComponent,

@@ -5,8 +5,6 @@ import {SiteLayoutComponent} from './shared/layouts/site-layout/site-layout.comp
 import {LoginPageComponent} from './login-page/login-page.component';
 import {RegisterPageComponent} from './register-page/register-page.component';
 import {AuthGuard} from './shared/classes/auth.guard';
-import {AnalyticsPageComponent} from './analytics-page/analytics-page.component';
-import {HistoryPageComponent} from './history-page/history-page.component';
 
 
 const routes: Routes = [
@@ -38,10 +36,10 @@ const routes: Routes = [
         path: 'overview',
         loadChildren: () => import('./overview-page/overview-page.module').then(m => m.OverviewPageModule)
       },
-      // {
-      //   path: 'analytics',
-      //   component: AnalyticsPageComponent
-      // },
+      {
+        path: 'analytics',
+        loadChildren: () => import('./analytics-page/analytics-page.module').then(m => m.AnalyticsPageModule)
+      },
       {
         path: 'history',
         loadChildren: () => import('./history-page/history-page.module').then(m => m.HistoryPageModule)

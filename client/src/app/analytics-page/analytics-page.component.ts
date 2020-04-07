@@ -1,8 +1,8 @@
 import {AfterViewInit, Component, ElementRef, OnDestroy, ViewChild} from '@angular/core';
 import {AnalyticsService} from '../shared/services/analytics.service';
 import {Chart} from 'chart.js';
-import {Subscription} from 'rxjs';
 import {AnalyticsPage} from '../shared/interfaces';
+import {untilDestroyed} from 'ngx-take-until-destroy';
 
 @Component({
   selector: 'app-analytics-page',
@@ -15,7 +15,6 @@ export class AnalyticsPageComponent implements AfterViewInit, OnDestroy {
 
   average: number;
   pending = true;
-  private subscriptions: Subscription[] = [];
 
   constructor(private service: AnalyticsService) {
   }
@@ -31,7 +30,9 @@ export class AnalyticsPageComponent implements AfterViewInit, OnDestroy {
       color: 'rgb(54, 162, 235)'
     };
 
-    const subscription = this.service.getAnalytics().subscribe((data: AnalyticsPage) => {
+    this.service.getAnalytics()
+      .pipe(untilDestroyed(this))
+      .subscribe((data: AnalyticsPage) => {
       this.average = data.average;
 
       gainConfig.labels = data.chart.map(item => item.label);
@@ -50,13 +51,9 @@ export class AnalyticsPageComponent implements AfterViewInit, OnDestroy {
 
       this.pending = false;
     });
-
-    this.subscriptions.push(subscription);
   }
 
   ngOnDestroy() {
-    this.subscriptions.forEach(subscription => subscription.unsubscribe());
-    this.subscriptions = null;
   }
 }
 
