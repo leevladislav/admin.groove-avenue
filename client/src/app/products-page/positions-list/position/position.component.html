@@ -9,7 +9,7 @@
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput placeholder="Product description:" formControlName="description" required>
+    <textarea cdkTextareaAutosize matInput placeholder="Product description:" formControlName="description" required></textarea>
     <mat-error>
       <app-validator-message [field]="form.get('description')"></app-validator-message>
     </mat-error>

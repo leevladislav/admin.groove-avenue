@@ -14,6 +14,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import {TextFieldModule} from '@angular/cdk/text-field';
 
 @NgModule({
   imports: [
@@ -31,7 +32,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     MatProgressSpinnerModule,
     MatDatepickerModule,
     MatRadioModule,
-    MatSidenavModule
+    MatSidenavModule,
+    TextFieldModule
   ],
   declarations: [],
   exports: [
@@ -48,7 +50,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     MatProgressSpinnerModule,
     MatDatepickerModule,
     MatRadioModule,
-    MatSidenavModule
+    MatSidenavModule,
+    TextFieldModule
   ]
 })
 export class MaterialModule {

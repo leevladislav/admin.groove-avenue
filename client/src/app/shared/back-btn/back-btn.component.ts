@@ -9,7 +9,7 @@ import {Location} from '@angular/common';
 })
 export class BackBtnComponent implements OnInit {
     @Input() backUrl: string;
-    @Input() text = 'Назад';
+    @Input() text = 'Go back';
 
     constructor(
         private router: Router,

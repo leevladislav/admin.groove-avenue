@@ -1,5 +1,5 @@
 <div class="page-title">
-  <p>История заказов</p>
+  <p>Orders history</p>
 </div>
 
 <app-history-filter (onFilter)="applyFilter($event)"></app-history-filter>
@@ -11,7 +11,7 @@
     <div *ngIf="!noMoreOrders" class="load-more">
       <button mat-raised-button color="primary"
               (click)="loadMore()" *ngIf="!loading; else loader">
-        Загрузить еще
+        Load more
       </button>
 
       <ng-template #loader>
